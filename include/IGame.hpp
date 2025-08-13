@@ -1,8 +1,12 @@
 #ifndef IGAME_HPP
 #define IGAME_HPP
 
+#include <iostream>
+#include <memory>
+#include <stdexcept>
 #include <string>
 #include <algorithm>
+#include <unordered_map>
 #include <vector>
 
 class IGame {

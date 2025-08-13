@@ -6,4 +6,6 @@ public:
     void score() override;
     void stop() override;
 private:
+    std::vector<std::string> mapData;
+    int HEIGHT, WIDTH;
 };

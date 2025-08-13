@@ -28,6 +28,9 @@ void Nibbler::init()
     snake.push_front({snakeXstart - 1, snakeYstart});
     snake.push_front({snakeXstart - 2, snakeYstart});
     snake.push_front({snakeXstart - 3, snakeYstart});
+
+    currentDirection = Input::RIGHT;
+    scores = 0;
 }
 
 void Nibbler::stop() 

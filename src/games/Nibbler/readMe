@@ -1,0 +1,26 @@
+#NIBBLER
+
+Je veux faire un nibbler où un joueur doit se déplacer, 
+collecter des fruits qui seront généré au hasard, gérer les conditions qui ici
+au contraire de Snake, le serpent peut coincider avec les cases "#" sans mourir
+et ensuite avec l'entrée de l'utilisateur, changé de direction ou dans un autre cas,
+le changement de direction sera automatique.
+
+D'abord faire une fonction d'initialisation de toutes les ressources de la map,  la taille
+de la map, sa l'argeur, les food qui seront placés à l'initialisation, et initialiser
+le corps du snake.
+
+Ensuite, le serpent doit pouvoir se déplacer, celà implique que je dois manipuler les entrées
+de l'utilisateur au moment ou il entre une touche. La fonction qui va me permettre celà sera la
+fonction hanleInput qui va gérer le UP, DOWN, RIGHT, LEFT et au mm moment mettre à jour la direction
+actuelle du snake et faire des pop.back ou push_front en fonction du mouvement ou le snake se dirige
+tout en changeant les coordonées initiales du snake.
+
+En plus, il faudra également une fonction checkCollision qui va prendre, les nouvelles positions
+de la tete du snake pour vérifier si il n'est pas déja sur un mur "#" ou s'il ne passe pas déja sur
+un food 'x'.
+
+Egalement, il va falloir une fonction de end game, qui va en fonction des règles décider si le jeu
+est gagné et arreté tout autre fonction et soit déclarer un gameOver ou un gameWin.
+
+Il faudra aussi une fonction pour mettre à jour les éléments de la map au fur et à mesure.

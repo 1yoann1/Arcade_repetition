@@ -2,8 +2,8 @@
 
 class Nibbler : public IGame {
 public:
-    void init();
-    void score();
-    void stop();
+    void init() override;
+    void score() override;
+    void stop() override;
 private:
 };

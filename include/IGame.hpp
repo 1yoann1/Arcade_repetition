@@ -9,6 +9,7 @@ class IGame {
 public:
     virtual ~IGame() = default;
     virtual void init() = 0;
+    virtual void score() = 0;
     virtual void stop() = 0;
 };
 

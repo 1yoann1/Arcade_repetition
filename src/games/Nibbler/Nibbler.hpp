@@ -1,6 +1,9 @@
 #include "../include/IGame.hpp"
 
 class Nibbler : public IGame {
-    public:
-    private:
+public:
+    void init();
+    void score();
+    void stop();
+private:
 };

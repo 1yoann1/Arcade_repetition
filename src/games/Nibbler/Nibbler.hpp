@@ -1,5 +1,9 @@
 #include "../include/IGame.hpp"
 
+struct Position {
+    int x, y;
+};
+
 class Nibbler : public IGame {
 public:
     void init() override;
@@ -8,4 +12,6 @@ public:
 private:
     std::vector<std::string> mapData;
     int HEIGHT, WIDTH;
+    int snakeXstart, snakeYstart;
+    std::deque<Position> snake;
 };

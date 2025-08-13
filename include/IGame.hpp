@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <vector>
+#include <deque>
 
 class IGame {
 public:

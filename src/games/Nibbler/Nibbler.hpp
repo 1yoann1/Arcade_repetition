@@ -11,6 +11,8 @@ public:
     void stop() override;
 
     void move();
+    void checkCollision();
+    void placeFood();
 private:
     std::vector<std::string> mapData;
     int HEIGHT, WIDTH;

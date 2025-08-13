@@ -41,3 +41,11 @@ void Nibbler::score()
 void Nibbler::move()
 {
 }
+
+void Nibbler::checkCollision()
+{
+}
+
+void Nibbler::placeFood()
+{
+}

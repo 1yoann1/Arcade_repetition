@@ -9,9 +9,12 @@ public:
     void init() override;
     void score() override;
     void stop() override;
+
+    void move();
 private:
     std::vector<std::string> mapData;
     int HEIGHT, WIDTH;
     int snakeXstart, snakeYstart;
     std::deque<Position> snake;
+    int food;
 };

@@ -56,6 +56,10 @@ void Nibbler::handleInput(Input input)
     else if (input == Input::LEFT && currentDirection != Input::RIGHT) currentDirection = Input::LEFT;
     else move(); // si je fais ce qui est dis en bas je vais devoir vérifié si l'endroit ou il veut aller est un mur non ? (Yoann)
 
+    //Nons dans le else tu conserves juste la même direction.
+    //C'est aprsè le else que tu mets une condition pour choisir si c'est le move tu appelles ou autre fonction
+    // ou au lieu de faire ça en un dans tous tes else if relatif au déplcement tu appelles le move()
+
     //Dans ton enum ajoute une input pour le refress
     //Gère le cas par défaut (else) parce quand dans un nibbler on a bas toujours besoin d'appuyer pour que le serpent se déplace
     //Si il s'agit d'une input de dépalceùent
@@ -114,6 +118,7 @@ void Nibbler::checkCollision()
         hasEaten = true;
         mapData[food.foodX][food.foodY] = ' ';
         placeFood();//Ici lorsqu'il bouffe appelle ta fonction placeFood pour regenérer automatiquement autre food
+        //C'est ça quand un bouffe un un autre apparait
     }
 }
 
@@ -145,3 +150,4 @@ void Nibbler::update(Input input) {
         refresh = false;
     }
 }
+

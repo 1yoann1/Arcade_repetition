@@ -20,6 +20,7 @@ public:
     void init() override;
     void score() override;
     void stop() override;
+    void update(Input input) override;
 
     void move();
     void checkCollision();
@@ -34,5 +35,6 @@ private:
     foodPosition food;
     bool hasEaten = false;
     int scores;
+    bool refresh;
     //int food;
 };

@@ -17,6 +17,7 @@ public:
     virtual void init() = 0;
     virtual void score() = 0;
     virtual void stop() = 0;
+    virtual void update(Input input) = 0;
 };
 
 #endif //IGAME_HPP

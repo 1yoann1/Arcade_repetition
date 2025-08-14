@@ -54,6 +54,14 @@ void Nibbler::handleInput(Input input)
     else if (input == Input::DOWN && currentDirection != Input::UP) currentDirection = Input::DOWN;
     else if (input == Input::RIGHT && currentDirection != Input::LEFT) currentDirection = Input::RIGHT;
     else if (input == Input::LEFT && currentDirection != Input::RIGHT) currentDirection = Input::LEFT;
+
+    //Dans ton enum ajoute une input pour le refress
+    //Gère le cas par défaut (else) parce quand dans un nibbler on a bas toujours besoin d'appuyer pour que le serpent se déplace
+    //Si il s'agit d'une input de dépalceùent
+        //call  move
+    //S'il s'agit d'une input de refresh ou de pause ou de menu
+
+    //Ta fonction handle Input décide la fonction à appeler et retourne la map
 }
 
 void Nibbler::move()
@@ -77,7 +85,10 @@ void Nibbler::move()
         hasEaten = false;
     }
     mapData[snakeHeadY][snakeHeadX] = s;
-    checkCollision();
+    checkCollision();   
+    //Vu que tu places le joueur et son corps dans la map
+    //Tu n'auras plus besoin d'envoyer la position du player au core
+    //Ta fonction move doit retourner la map
 }
 
 void Nibbler::checkCollision()
@@ -101,6 +112,7 @@ void Nibbler::checkCollision()
     if (snakeHeadX == food.foodX && snakeHeadY == food.foodY) {
         hasEaten = true;
         mapData[food.foodX][food.foodY] = ' ';
+        //Ici lorsqu'il bouffe appelle ta fonction placeFood pour regenérer automatiquement autre food
     }
 }
 
@@ -119,3 +131,11 @@ void Nibbler::placeFood()
 
     mapData[food.foodY][food.foodX] = '*';
 }
+
+void Nibbler::update(int input) {
+    //appeler le handle input
+
+    //Ensuite vu que les fonctions que handle input gère retournent la map
+    //Ta fonction update aussi doit retourner la map
+}
+

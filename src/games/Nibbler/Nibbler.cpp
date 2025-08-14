@@ -61,13 +61,23 @@ void Nibbler::move()
     Position currentHead = snake.front();
     int snakeHeadX = currentHead.x;
     int snakeHeadY = currentHead.y;
-    std::string s = ".";
+    char s = 'O';
 
     if (currentDirection == Input::UP) snakeHeadY--;
     else if (currentDirection == Input::DOWN) snakeHeadY++;
     else if (currentDirection == Input::RIGHT) snakeHeadX++;
     else if (currentDirection == Input::LEFT) snakeHeadX--;
 
+    snake.push_front({snakeHeadX, snakeHeadY});
+    if (!hasEaten) {
+        Position tail = snake.back();
+        mapData[tail.x][tail.y] = ' ';
+        snake.pop_back();
+    } else {
+        hasEaten = false;
+    }
+    mapData[snakeHeadY][snakeHeadX] = s;
+    checkCollision();
 }
 
 void Nibbler::checkCollision()

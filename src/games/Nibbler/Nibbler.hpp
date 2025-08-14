@@ -20,6 +20,7 @@ public:
     void move();
     void checkCollision();
     void placeFood();
+    void handleInput(Input input);
 private:
     Input currentDirection;
     std::vector<std::string> mapData;

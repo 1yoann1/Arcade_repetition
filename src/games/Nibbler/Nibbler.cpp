@@ -66,6 +66,13 @@ void Nibbler::checkCollision()
     if (mapData[snakeHeadX][snakeHeadY] == '#') {
         return;
     }
+
+    for (size_t i = 1; snake.size();  i++) {
+        if (snakeHeadX == snake[i].x && snakeHeadY == snake[i].y) {
+            stop();
+            return;
+        }
+    }
 }
 
 void Nibbler::placeFood()

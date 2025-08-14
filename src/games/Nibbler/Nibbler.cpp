@@ -77,4 +77,8 @@ void Nibbler::checkCollision()
 
 void Nibbler::placeFood()
 {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distribX(1, WIDTH - 2);
+    std::uniform_int_distribution<> distribY(1, HEIGHT - 1);
 }

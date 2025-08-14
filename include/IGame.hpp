@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <vector>
 #include <deque>
+#include <random>
 
 class IGame {
 public:

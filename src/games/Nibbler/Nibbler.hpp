@@ -22,7 +22,7 @@ public:
     void stop() override;
     void update(Input input) override;
 
-    void move();
+    std::vector<std::string> move();
     void checkCollision();
     void placeFood();
     void handleInput(Input input);

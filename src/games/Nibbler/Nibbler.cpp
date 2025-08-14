@@ -54,7 +54,7 @@ void Nibbler::handleInput(Input input)
     else if (input == Input::DOWN && currentDirection != Input::UP) currentDirection = Input::DOWN;
     else if (input == Input::RIGHT && currentDirection != Input::LEFT) currentDirection = Input::RIGHT;
     else if (input == Input::LEFT && currentDirection != Input::RIGHT) currentDirection = Input::LEFT;
-    else move(); // si je fais ce qui est dis en bas je vais devoir vérifié si l'endroit ou il veut aller est un mur non ? (Yoann)
+    //else move(); // si je fais ce qui est dis en bas je vais devoir vérifié si l'endroit ou il veut aller est un mur non ? (Yoann)
 
     //Nons dans le else tu conserves juste la même direction.
     //C'est aprsè le else que tu mets une condition pour choisir si c'est le move tu appelles ou autre fonction
@@ -69,7 +69,7 @@ void Nibbler::handleInput(Input input)
     //Ta fonction handle Input décide la fonction à appeler et retourne la map
 }
 
-void Nibbler::move()
+std::vector<std::string> Nibbler::move()
 {
     Position currentHead = snake.front();
     int snakeHeadX = currentHead.x;
@@ -84,7 +84,7 @@ void Nibbler::move()
     snake.push_front({snakeHeadX, snakeHeadY});
     if (!hasEaten) {
         Position tail = snake.back();
-        mapData[tail.x][tail.y] = ' ';
+        mapData[tail.y][tail.x] = ' ';
         snake.pop_back();
     } else {
         hasEaten = false;
@@ -94,6 +94,7 @@ void Nibbler::move()
     //Vu que tu places le joueur et son corps dans la map
     //Tu n'auras plus besoin d'envoyer la position du player au core
     //Ta fonction move doit retourner la map
+    return mapData;
 }
 
 void Nibbler::checkCollision()

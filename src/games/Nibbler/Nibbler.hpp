@@ -7,6 +7,10 @@ enum class Input {
     RIGHT
 };
 
+struct foodPosition {
+    int foodX, foodY;
+};
+
 struct Position {
     int x, y;
 };

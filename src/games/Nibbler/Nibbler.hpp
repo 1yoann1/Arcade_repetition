@@ -4,7 +4,8 @@ enum class Input {
     UP,
     DOWN,
     LEFT,
-    RIGHT
+    RIGHT,
+    REfRESH
 };
 
 struct foodPosition {
@@ -41,3 +42,4 @@ private:
     bool refresh;
     //int food;
 };
+

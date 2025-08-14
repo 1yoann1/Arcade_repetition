@@ -29,6 +29,10 @@ void Nibbler::init()
     snake.push_front({snakeXstart - 2, snakeYstart});
     snake.push_front({snakeXstart - 3, snakeYstart});
 
+    for (Position pos: snake) {
+        mapData[pos.y][pos.x] = 'O';
+    }
+
     currentDirection = Input::RIGHT;
     scores = 0;
 
@@ -48,25 +52,20 @@ void Nibbler::score()
     }
 }
 
-void Nibbler::handleInput(Input input)
+std::vector<std::String> Nibbler::handleInput(Input input)
 {
-    if (input == Input::UP && currentDirection != Input::DOWN) currentDirection = Input::UP;
-    else if (input == Input::DOWN && currentDirection != Input::UP) currentDirection = Input::DOWN;
-    else if (input == Input::RIGHT && currentDirection != Input::LEFT) currentDirection = Input::RIGHT;
-    else if (input == Input::LEFT && currentDirection != Input::RIGHT) currentDirection = Input::LEFT;
-    //else move(); // si je fais ce qui est dis en bas je vais devoir vérifié si l'endroit ou il veut aller est un mur non ? (Yoann)
-
-    //Nons dans le else tu conserves juste la même direction.
-    //C'est aprsè le else que tu mets une condition pour choisir si c'est le move tu appelles ou autre fonction
-    // ou au lieu de faire ça en un dans tous tes else if relatif au déplcement tu appelles le move()
-
-    //Dans ton enum ajoute une input pour le refress
-    //Gère le cas par défaut (else) parce quand dans un nibbler on a bas toujours besoin d'appuyer pour que le serpent se déplace
-    //Si il s'agit d'une input de dépalceùent
-        //call  move
-    //S'il s'agit d'une input de refresh ou de pause ou de menu
-
-    //Ta fonction handle Input décide la fonction à appeler et retourne la map
+    if (input == Input::UP && currentDirection != Input::DOWN)
+        currentDirection = Input::UP;
+    else if (input == Input::DOWN && currentDirection != Input::UP)
+        currentDirection = Input::DOWN;
+    else if (input == Input::RIGHT && currentDirection != Input::LEFT)
+        currentDirection = Input::RIGHT;
+    else if (input == Input::LEFT && currentDirection != Input::RIGHT)
+        currentDirection = Input::LEFT;
+    else if (input == Input::REFRESH) {
+        return refresh();
+    }
+    return move(); 
 }
 
 std::vector<std::string> Nibbler::move()
@@ -76,10 +75,14 @@ std::vector<std::string> Nibbler::move()
     int snakeHeadY = currentHead.y;
     char s = 'O';
 
-    if (currentDirection == Input::UP) snakeHeadY--;
-    else if (currentDirection == Input::DOWN) snakeHeadY++;
-    else if (currentDirection == Input::RIGHT) snakeHeadX++;
-    else if (currentDirection == Input::LEFT) snakeHeadX--;
+    if (currentDirection == Input::UP)
+        snakeHeadY--;
+    else if (currentDirection == Input::DOWN)
+        snakeHeadY++;
+    else if (currentDirection == Input::RIGHT)
+        snakeHeadX++;
+    else if (currentDirection == Input::LEFT)
+        snakeHeadX--;
 
     snake.push_front({snakeHeadX, snakeHeadY});
     if (!hasEaten) {
@@ -91,9 +94,6 @@ std::vector<std::string> Nibbler::move()
     }
     mapData[snakeHeadY][snakeHeadX] = s;
     checkCollision();   
-    //Vu que tu places le joueur et son corps dans la map
-    //Tu n'auras plus besoin d'envoyer la position du player au core
-    //Ta fonction move doit retourner la map
     return mapData;
 }
 
@@ -118,8 +118,8 @@ void Nibbler::checkCollision()
     if (snakeHeadX == food.foodX && snakeHeadY == food.foodY) {
         hasEaten = true;
         mapData[food.foodX][food.foodY] = ' ';
-        placeFood();//Ici lorsqu'il bouffe appelle ta fonction placeFood pour regenérer automatiquement autre food
-        //C'est ça quand un bouffe un un autre apparait
+        scores += 1;
+        placeFood();
     }
 }
 
@@ -139,18 +139,31 @@ void Nibbler::placeFood()
     mapData[food.foodY][food.foodX] = '*';
 }
 
-void Nibbler::update(Input input) {
-    //appeler le handle input
+std::vector<std::string> Nibbler::refresh() {
+    scores = 0;
+    snake.clear();
+    snakeXstart = WIDTH / 2;
+    snakeYstart = HEIGHT - 2;
 
-    //Ensuite vu que les fonctions que handle input gère retournent la map
-    //Ta fonction update aussi doit retourner la map
-    handleInput(input);
-    //while (refresh != true) {
-    if (clock.getElapsedTime() >= speed) {
-        move();
-        checkCollision();
-        refresh = false;
-        clock.restart();
+    snake.push_front({snakeXstart, snakeYstart});
+    snake.push_front({snakeXstart - 1, snakeYstart});
+    snake.push_front({snakeXstart - 2, snakeYstart});
+    snake.push_front({snakeXstart - 3, snakeYstart});
+
+    for (Position pos: snake) {
+        mapData[pos.y][pos.x] = 'O';
     }
+
+    currentDirection = Input::RIGHT;
+
+    return mapData;
 }
+
+void Nibbler::update(Input input) {
+    if (input) {
+        return handleInput(input);
+    }
+    return move();
+}
+
 

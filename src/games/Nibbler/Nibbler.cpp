@@ -47,6 +47,10 @@ void Nibbler::score()
 
 void Nibbler::handleInput(Input input)
 {
+    if (input == Input::UP && currentDirection != Input::DOWN) currentDirection == Input::UP;
+    else if (input == Input::DOWN && currentDirection != Input::UP) currentDirection == Input::DOWN;
+    else if (input == Input::RIGHT && currentDirection != Input::LEFT) currentDirection == Input::RIGHT;
+    else if (input == Input::LEFT && currentDirection != Input::RIGHT) currentDirection == Input::LEFT;
 }
 
 void Nibbler::move()

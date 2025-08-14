@@ -50,18 +50,10 @@ void Nibbler::score()
 
 void Nibbler::handleInput(Input input)
 {
-    if (input == Input::UP && currentDirection != Input::DOWN) {
-        currentDirection = Input::UP;
-    } else move();
-    if (input == Input::DOWN && currentDirection != Input::UP) {
-        currentDirection = Input::DOWN;
-    } else move();
-    if (input == Input::RIGHT && currentDirection != Input::LEFT) {
-        currentDirection = Input::RIGHT;
-    } else move();
-    if (input == Input::LEFT && currentDirection != Input::RIGHT) {
-        currentDirection = Input::LEFT;
-    } else move();
+    if (input == Input::UP && currentDirection != Input::DOWN) currentDirection = Input::UP;
+    else if (input == Input::DOWN && currentDirection != Input::UP) currentDirection = Input::DOWN;
+    else if (input == Input::RIGHT && currentDirection != Input::LEFT) currentDirection = Input::RIGHT;
+    else if (input == Input::LEFT && currentDirection != Input::RIGHT) currentDirection = Input::LEFT;
     //else move(); // si je fais ce qui est dis en bas je vais devoir vérifié si l'endroit ou il veut aller est un mur non ? (Yoann)
 
     //Nons dans le else tu conserves juste la même direction.
@@ -153,10 +145,12 @@ void Nibbler::update(Input input) {
     //Ensuite vu que les fonctions que handle input gère retournent la map
     //Ta fonction update aussi doit retourner la map
     handleInput(input);
-    while (refresh != true) {
+    //while (refresh != true) {
+    if (clock.getElapsedTime() >= speed) {
         move();
         checkCollision();
         refresh = false;
+        clock.restart();
     }
 }
 

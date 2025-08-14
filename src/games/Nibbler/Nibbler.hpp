@@ -34,6 +34,9 @@ private:
     std::deque<Position> snake;
     foodPosition food;
     bool hasEaten = false;
+    sf:Clock clock;
+    sf::Time speed = sf::milliseconds(200);
+    int speed = 150;
     int scores;
     bool refresh;
     //int food;

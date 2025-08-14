@@ -43,6 +43,9 @@ void Nibbler::stop()
 
 void Nibbler::score()
 {
+    if (hasEaten = true) {
+        scores += 10;
+    }
 }
 
 void Nibbler::handleInput(Input input)
@@ -63,15 +66,21 @@ void Nibbler::checkCollision()
     int snakeHeadX = currentHead.x;
     int snakeHeadY = currentHead.y;
 
-    if (mapData[snakeHeadX][snakeHeadY] == '#') {
+    if (mapData[snakeHeadY][snakeHeadX] == '#') {
         return;
     }
 
-    for (size_t i = 1; snake.size();  i++) {
+    for (size_t i = 1; i < snake.size();  i++) {
         if (snakeHeadX == snake[i].x && snakeHeadY == snake[i].y) {
             stop();
             return;
         }
+    }
+
+    int i = 0;
+    if (snakeHeadX == food.foodX && snakeHeadY == food.foodY) {
+        hasEaten = true;
+        mapData[food.foodX][food.foodY] = ' ';
     }
 }
 
@@ -82,12 +91,11 @@ void Nibbler::placeFood()
     std::uniform_int_distribution<> distribX(1, WIDTH - 1);
     std::uniform_int_distribution<> distribY(1, HEIGHT - 1);
 
-    foodPosition food;
     //int foodX, foodY;
     do {
         food.foodX = distribX(gen);
         food.foodY = distribY(gen);
     } while (mapData[food.foodY][food.foodX] != ' ');
-    
-    mapData[food.foodX][food.foodY] = '*';
+
+    mapData[food.foodY][food.foodX] = '*';
 }

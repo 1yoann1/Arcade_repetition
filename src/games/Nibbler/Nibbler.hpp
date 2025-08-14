@@ -31,6 +31,8 @@ private:
     int HEIGHT, WIDTH;
     int snakeXstart, snakeYstart;
     std::deque<Position> snake;
+    foodPosition food;
+    bool hasEaten = false;
     int scores;
-    int food;
+    //int food;
 };

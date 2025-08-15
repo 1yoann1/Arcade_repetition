@@ -11,3 +11,7 @@ void Pacman::stop()
 void Pacman::score()
 {
 }
+
+void Pacman::update(Input input)
+{
+}

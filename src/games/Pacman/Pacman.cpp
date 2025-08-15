@@ -23,7 +23,7 @@ void Pacman::init()
     WIDTH =  mapData[0].size();
 
     playerXstart = WIDTH / 2;
-    playerYstart = HEIGHT - 2;
+    playerYstart = HEIGHT - 14;
 }
 
 void Pacman::stop()

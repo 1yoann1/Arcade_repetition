@@ -9,6 +9,10 @@ enum class Input {
     NONE
 };
 
+struct Position {
+    int x, y;
+};
+
 class Pacman : public IGame {
 public:
     void init() override;
@@ -23,6 +27,8 @@ public:
 private:
     Input currentDirection;
     std::vector<std::string> mapData;
+    std::deque<Position> player;
+    int playerXstart, playerYstart;
     int HEIGHT, WIDTH;
     int scores;
 };

@@ -218,3 +218,8 @@ void Pacman::update(Input input)
     movePlayer();
     enemyMove();
 }
+
+extern "C" IGame* create_game()
+{
+    return new Pacman();
+}

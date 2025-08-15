@@ -25,14 +25,22 @@ void Pacman::init()
     playerXstart = WIDTH / 2;
     playerYstart = HEIGHT - 14;
 
-    player.push_front({playerXstart, playerYstart});
+    enemyXstart = WIDTH / 2;
+    enemyYstart = HEIGHT - 9;
 
-    Position pos;
-    mapData[pos.y][pos.x] = 'O';
+    player.push_front({playerXstart, playerYstart});
+    enemyPlayer.push_front({enemyXstart, enemyYstart});
+
+    //Position pos, enemyPos;
+    //mapData[pos.y][pos.x] = 'O';
+    //mapData[enemyPos.y][enemyPos.x] = 'C';
+    mapData[playerYstart][playerXstart] = 'O';
+    mapData[enemyYstart][enemyXstart] = 'C';
     currentDirection = Input::RIGHT;
+    //currentEDirection = Input::UP;
     scores = 0;
 
-    for (int i = 0; i <= 10; i++) {
+    for (int i = 0; i < 10; i++) {
         placeFood();
     }
 }
@@ -91,6 +99,29 @@ std::vector<std::string> Pacman::movePlayer()
     return mapData;
 }
 
+std::vector<std::string> Pacman::enemyMove()
+{
+    Position currentEnemy = enemyPlayer.front();
+    int enemyX = currentEnemy.x;
+    int enemyY = currentEnemy.y;
+    char e = 'C';
+
+    enemyY--;
+    mapData[enemyY][enemyX] = ' ';
+    if (mapData[enemyY - 1][enemyX] != '#')
+        enemyY--;
+    else if (mapData[enemyY + 1][enemyX] != '#')
+        enemyY++;
+    else if (mapData[enemyY][enemyX + 1] != '#')
+        enemyX++;
+    else if (mapData[enemyY][enemyX - 1] != '#')
+        enemyX--;
+    enemyPlayer.push_front({enemyX, enemyX});
+    mapData[enemyY][enemyX] = 'e';
+
+    return mapData;
+}
+
 void Pacman::checkCollision()
 {
     Position currentHead = player.front();
@@ -102,6 +133,12 @@ void Pacman::checkCollision()
     }
 
     //collision with ennemi players
+    for (Position ep : enemyPlayer) {
+        if (playerHeadX == ep.x && playerHeadY == ep.y) {
+            stop();
+            return;
+        }
+    }
 
     if (playerHeadX == food.foodX && playerHeadY == food.foodY) {
         hasEaten = true;
@@ -132,4 +169,9 @@ std::vector<std::string> Pacman::refresh()
 
 void Pacman::update(Input input)
 {
+    if (input == Input::NONE) {
+        handleInput(input);
+    }
+    movePlayer();
+    enemyMove();
 }

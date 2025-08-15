@@ -36,7 +36,7 @@ void Nibbler::init()
     currentDirection = Input::RIGHT;
     scores = 0;
 
-    for (int i = 0; i <= 10; i++) {
+    for (int i = 0; i < 10; i++) {
         placeFood();
     }
 }

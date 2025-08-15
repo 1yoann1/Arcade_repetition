@@ -29,16 +29,20 @@ public:
     void update(Input input) override;
 
     std::vector<std::string> movePlayer();
+    std::vector<std::string> enemyMove();
     void checkCollision();
     void placeFood();
     std::vector<std::string> handleInput(Input input);
     std::vector<std::string> refresh();
 private:
     Input currentDirection;
+    Input currentEDirection;
     std::vector<std::string> mapData;
     std::deque<Position> player;
+    std::deque<Position> enemyPlayer;
     foodPosition food;
     int playerXstart, playerYstart;
+    int enemyXstart, enemyYstart;
     int HEIGHT, WIDTH;
     int scores;
     bool hasEaten = false;

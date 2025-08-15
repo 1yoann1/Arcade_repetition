@@ -43,7 +43,7 @@ void Pacman::init()
     //Position pos, enemyPos;
     //mapData[pos.y][pos.x] = 'O';
     //mapData[enemyPos.y][enemyPos.x] = 'C';
-    mapData[playerYstart][playerXstart] = 'O';
+    //mapData[playerYstart][playerXstart] = 'O';
     //mapData[enemyYstart][enemyXstart] = 'C';
     //mapData[enemyYstart1][enemyXstart1] = 'C';
     currentDirection = Input::RIGHT;
@@ -204,7 +204,7 @@ std::vector<std::string> Pacman::refresh()
     for (auto &e : enemies) {
         mapData[e.y][e.x] = 'C';
     }
-    
+
     currentDirection = Input::RIGHT;
 
     return mapData;

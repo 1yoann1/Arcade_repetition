@@ -5,7 +5,8 @@ enum class Input {
     DOWN,
     LEFT,
     RIGHT,
-    REfRESH
+    REFRESH,
+    NONE
 };
 
 struct foodPosition {
@@ -26,7 +27,8 @@ public:
     std::vector<std::string> move();
     void checkCollision();
     void placeFood();
-    void handleInput(Input input);
+    std::vector<std::string> handleInput(Input input);
+    std::vector<std::string> refresh();
 private:
     Input currentDirection;
     std::vector<std::string> mapData;
@@ -35,11 +37,8 @@ private:
     std::deque<Position> snake;
     foodPosition food;
     bool hasEaten = false;
-    sf:Clock clock;
-    sf::Time speed = sf::milliseconds(200);
-    int speed = 150;
     int scores;
-    bool refresh;
+    //bool refresh;
     //int food;
 };
 

@@ -10,8 +10,6 @@
 #include <vector>
 #include <deque>
 #include <random>
-#include <SFML/Graphics.hpp>
-#include <SFML/System/Clock.hpp>
 
 class IGame {
 public:

@@ -47,12 +47,12 @@ void Nibbler::stop()
 
 void Nibbler::score()
 {
-    if (hasEaten = true) {
+    if (hasEaten == true) {
         scores += 10;
     }
 }
 
-std::vector<std::String> Nibbler::handleInput(Input input)
+std::vector<std::string> Nibbler::handleInput(Input input)
 {
     if (input == Input::UP && currentDirection != Input::DOWN)
         currentDirection = Input::UP;
@@ -117,7 +117,7 @@ void Nibbler::checkCollision()
     int i = 0;
     if (snakeHeadX == food.foodX && snakeHeadY == food.foodY) {
         hasEaten = true;
-        mapData[food.foodX][food.foodY] = ' ';
+        mapData[food.foodY][food.foodX] = ' ';
         scores += 1;
         placeFood();
     }
@@ -139,7 +139,8 @@ void Nibbler::placeFood()
     mapData[food.foodY][food.foodX] = '*';
 }
 
-std::vector<std::string> Nibbler::refresh() {
+std::vector<std::string> Nibbler::refresh()
+{
     scores = 0;
     snake.clear();
     snakeXstart = WIDTH / 2;
@@ -159,11 +160,12 @@ std::vector<std::string> Nibbler::refresh() {
     return mapData;
 }
 
-void Nibbler::update(Input input) {
-    if (input) {
-        return handleInput(input);
+void Nibbler::update(Input input)
+{
+    if (input != Input::NONE) {
+        handleInput(input);
     }
-    return move();
+    move();
 }
 
 

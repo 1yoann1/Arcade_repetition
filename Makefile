@@ -2,8 +2,8 @@ CXX			=	g++
 CXXFLAGS	=	-Wall -Wextra -std=c++17 -fPIC -fno-gnu-unique -I./include
 RM			=	rm -f
 
-NAME		=	arcade
-SRC_CORE	=	src/Core.cpp
+NAME		=	arcade_exec
+SRC_CORE	=	Arcade/Core.cpp
 OBJ_CORE	=	$(SRC_CORE:.cpp=.o)
 LDFLAGS_CORE=	-ldl
 

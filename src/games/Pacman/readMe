@@ -1,4 +1,5 @@
 #PACMAN
+
 Pour PACMAN, le jeu consiste à controller un player sur une map similaire à un labyrinthe.
 Ce player doit pouvoir se déplacer librement sur la map en essayant de récupéré des food placés le long
 de la map. Il ne doit pas se coincer avec les npc ennemi qui eux meme se déplace sur cette map.
@@ -8,4 +9,21 @@ les murs (#) ainsi que le player.
 
 Tout d'abord, faire une fonction init qui va initialiser la map et tout ce qui concerne le player 'O', initialiser
 aussi à cet niveau l'apparition des players ennemi, le score à 0 et le mouvement par défaut au début du player
-et je pense des autres ennemi player aussi
+et je pense des autres ennemi player aussi.
+
+Ensuite, le player dois pouvoir se déplacer, donc je vais devoir implémenter une fonction handleInput qui va gérer
+les entrées de l'utilisateur et envoyé ces entrés là à une fonction playerMove() responsable du mouvement du player
+en fonction de quel touche est appuyé.
+
+Continuer avec l'implémentation du playerMove() lui meme, cette fonction va faire bouger le player 'O' d'une case
+à l'autre en prenant en compte l'entrée de l'utilisateur. Ici on va juste faire bouger le 'O' et changer l'ancien 'O'
+en espace au lieu de prendre en compte tout une chaine.
+
+De plus, il faudra également gérer une fonction checkCollision() qui va prendre les nouvelles positions du player
+et vérifier s'il n'entre pas en collision avec un autre player ennemi, ou avec un fruit, dans le cas ou il entre
+contact avec un autre player ennemi il y a automatiquement gameOver. Il ne meurt pas également quand il touche un mur.
+
+Egalement, il va falloir une fonction de end game, qui va en fonction des règles décider si le jeu
+est gagné et arreté tout autre fonction et soit déclarer un gameOver ou un gameWin.
+
+Il faudra aussi une fonction pour mettre à jour les éléments de la map au fur et à mesure.

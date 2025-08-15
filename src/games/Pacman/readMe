@@ -1,1 +1,11 @@
 #PACMAN
+Pour PACMAN, le jeu consiste à controller un player sur une map similaire à un labyrinthe.
+Ce player doit pouvoir se déplacer librement sur la map en essayant de récupéré des food placés le long
+de la map. Il ne doit pas se coincer avec les npc ennemi qui eux meme se déplace sur cette map.
+Au contact du player avec un player ennemi il y a automatiquement gameOver. Les player ennemi bougent tout seuls
+sur la map sans note intervention en débutant du centre (normalement). Ils ne peuvent également pas traverser
+les murs (#) ainsi que le player.
+
+Tout d'abord, faire une fonction init qui va initialiser la map et tout ce qui concerne le player 'O', initialiser
+aussi à cet niveau l'apparition des players ennemi, le score à 0 et le mouvement par défaut au début du player
+et je pense des autres ennemi player aussi

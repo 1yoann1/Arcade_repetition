@@ -9,6 +9,10 @@ enum class Input {
     NONE
 };
 
+struct enemyPosition {
+    int eneX, eneY;
+};
+
 struct Position {
     int x, y;
 };

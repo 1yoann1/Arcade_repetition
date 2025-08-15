@@ -28,14 +28,24 @@ void Pacman::init()
     enemyXstart = WIDTH / 2;
     enemyYstart = HEIGHT - 9;
 
+    enemyXstart1 = (WIDTH / 2) - 2;
+    enemyYstart1 = HEIGHT - 9;
     player.push_front({playerXstart, playerYstart});
-    enemyPlayer.push_front({enemyXstart, enemyYstart});
+    mapData[playerYstart][playerXstart] = 'O';
+    //enemyPlayer.push_front({enemyXstart, enemyYstart});
+    //enemyPlayer1.push_front({enemyXstart1, enemyYstart1});
+    enemies.push_front({enemyXstart, enemyYstart});
+    enemies.push_front({enemyYstart1, enemyYstart1});
+    for (auto &e : enemies) {
+        mapData[e.y][e.x] = 'C';
+    }
 
     //Position pos, enemyPos;
     //mapData[pos.y][pos.x] = 'O';
     //mapData[enemyPos.y][enemyPos.x] = 'C';
     mapData[playerYstart][playerXstart] = 'O';
-    mapData[enemyYstart][enemyXstart] = 'C';
+    //mapData[enemyYstart][enemyXstart] = 'C';
+    //mapData[enemyYstart1][enemyXstart1] = 'C';
     currentDirection = Input::RIGHT;
     //currentEDirection = Input::UP;
     scores = 0;
@@ -101,24 +111,31 @@ std::vector<std::string> Pacman::movePlayer()
 
 std::vector<std::string> Pacman::enemyMove()
 {
-    Position currentEnemy = enemyPlayer.front();
-    int enemyX = currentEnemy.x;
-    int enemyY = currentEnemy.y;
-    char e = 'C';
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::vector<Input> directions = {Input::UP, Input::DOWN, Input::LEFT, Input::RIGHT};
 
-    enemyY--;
-    mapData[enemyY][enemyX] = ' ';
-    if (mapData[enemyY - 1][enemyX] != '#')
-        enemyY--;
-    else if (mapData[enemyY + 1][enemyX] != '#')
-        enemyY++;
-    else if (mapData[enemyY][enemyX + 1] != '#')
-        enemyX++;
-    else if (mapData[enemyY][enemyX - 1] != '#')
-        enemyX--;
-    enemyPlayer.push_front({enemyX, enemyX});
-    mapData[enemyY][enemyX] = 'e';
+    for (size_t i = 0; i < enemies.size(); i++) {
+        Position oldPos = enemies[i];
+        mapData[oldPos.y][oldPos.x] = ' ';
 
+        std::shuffle(directions.begin(), directions.end(), gen);
+        for (auto &dir : directions) {
+            int dx = oldPos.x;
+            int dy = oldPos.y;
+
+            if (dir == Input::UP) dy--;
+            else if (dir == Input::DOWN) dy++;
+            else if (dir == Input::LEFT) dx --;
+            else if (dir == Input::RIGHT) dx ++;
+
+            if (mapData[dy][dx] != '#' && mapData[dy][dx] != 'C') {
+                enemies[i] = {dx, dy};
+                break;
+            }
+        }
+        mapData[enemies[i].y][enemies[i].x] = 'C';
+    }
     return mapData;
 }
 
@@ -133,7 +150,7 @@ void Pacman::checkCollision()
     }
 
     //collision with ennemi players
-    for (Position ep : enemyPlayer) {
+    for (auto ep : enemies) {
         if (playerHeadX == ep.x && playerHeadY == ep.y) {
             stop();
             return;
@@ -165,6 +182,32 @@ void Pacman::placeFood()
 
 std::vector<std::string> Pacman::refresh()
 {
+    scores = 0;
+    player.clear();
+    enemies.clear();
+
+    playerXstart = WIDTH / 2;
+    playerYstart = HEIGHT - 14;
+
+    enemyXstart = WIDTH / 2;
+    enemyYstart = HEIGHT - 9;
+
+    enemyXstart1 = (WIDTH / 2) - 2;
+    enemyYstart1 = HEIGHT - 9;
+
+    player.push_front({playerXstart, playerYstart});
+    mapData[playerYstart][playerXstart] = 'O';
+
+    enemies.push_front({enemyXstart, enemyYstart});
+    enemies.push_front({enemyXstart1, enemyYstart1});
+
+    for (auto &e : enemies) {
+        mapData[e.y][e.x] = 'C';
+    }
+    
+    currentDirection = Input::RIGHT;
+
+    return mapData;
 }
 
 void Pacman::update(Input input)

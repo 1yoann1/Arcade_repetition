@@ -39,10 +39,13 @@ private:
     Input currentEDirection;
     std::vector<std::string> mapData;
     std::deque<Position> player;
-    std::deque<Position> enemyPlayer;
+    //std::deque<Position> enemyPlayer;
+    //std::deque<Position> enemyPlayer1;
+    std::deque<Position> enemies;
     foodPosition food;
     int playerXstart, playerYstart;
     int enemyXstart, enemyYstart;
+    int enemyXstart1, enemyYstart1;
     int HEIGHT, WIDTH;
     int scores;
     bool hasEaten = false;

@@ -9,6 +9,10 @@ enum class Input {
     NONE
 };
 
+struct foodPosition {
+    int foodX, foodY;
+};
+
 struct enemyPosition {
     int eneX, eneY;
 };
@@ -26,13 +30,16 @@ public:
 
     std::vector<std::string> movePlayer();
     void checkCollision();
+    void placeFood();
     std::vector<std::string> handleInput(Input input);
     std::vector<std::string> refresh();
 private:
     Input currentDirection;
     std::vector<std::string> mapData;
     std::deque<Position> player;
+    foodPosition food;
     int playerXstart, playerYstart;
     int HEIGHT, WIDTH;
     int scores;
+    bool hasEaten = false;
 };

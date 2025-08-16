@@ -2,6 +2,7 @@
 #define IDISPLAY_MODULE
 
 #include <string>
+#include <iostream>
 
 class IDisplayModule {
 public :

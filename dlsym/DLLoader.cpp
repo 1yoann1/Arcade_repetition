@@ -1,3 +1,4 @@
+/*
 #include "../Arcade/DLLoader.hpp"
 
 DLLoader::DLLoader(const std::string &path)
@@ -20,3 +21,4 @@ std::unique_ptr<T> DLLoader::getInstance()
         throw::std::runtime_error(dlerror());
     return std::unique_ptr<T>(create());
 }
+*/

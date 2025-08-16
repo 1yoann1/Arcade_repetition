@@ -6,6 +6,9 @@
 
 class SFML : public IDisplayModule {
 public:
+    void init() override;
+    void stop() override;
+    Input getInput() override;
 private:
 };
 

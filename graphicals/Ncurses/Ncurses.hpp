@@ -4,8 +4,11 @@
 #include "../include/IGraphic.hpp"
 #include <ncurses.h>
 
-class Ncurses : public IDisplayModule {
+class NcursesDisplay : public IDisplayModule {
 public:
+    void init() override;
+    void stop() override;
+    Input getInput() override;
 private:
 };
 

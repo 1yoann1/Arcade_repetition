@@ -38,28 +38,24 @@ void SfmlDisplay::display(std::vector<std::string> &map)
         for (size_t x = 0; x < map[y].size(); x++) {
             char c = map[y][x];
 
+            sf::Color color;
             switch(c) {
-                case '#' : sf::Color::White;
+                case '#' : color = sf::Color::White;
                            break;
-                case 'O' : sf::Color::Green;
+                case 'O' : color = sf::Color::Green;
                            break;
-                case 'C' : sf::Color::Red;
+                case 'C' : color = sf::Color::Red;
                            break;
-                case '*' : sf::Color::Yellow;
+                case '*' : color = sf::Color::Yellow;
                            break;
             }
-            sf::RectagleShape shape(sf::Vector2f(CELL_SIZE - 1.0f, CELL_SIZE - 1.0f));
-            shape.x = x * CELL_SIZE;
-            shape.y = y * CELL_SIZE;
-            shape.w = CELL_SIZE;
-            shape.h = CELL_SIZE;
-            
-            shape.setPosition(shape.x, shape.y, CELL_SIZE + 50);
-            shape.setFillColor(map[y][x]);
+            sf::RectangleShape shape(sf::Vector2f(CELL_SIZE - 1.0f, CELL_SIZE - 1.0f));
+            shape.setPosition(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE + 50);
+            shape.setFillColor(color);
             window->draw(shape);
-            window->display();
         }
     }
+    window->display();
 }
 
 void SfmlDisplay::clear()

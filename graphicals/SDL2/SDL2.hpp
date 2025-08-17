@@ -4,7 +4,7 @@
 #include "../include/IGraphic.hpp"
 #include <SDL2/SDL.h>
 
-class SDL2 : public IDisplayModule {
+class SDL2Display : public IDisplayModule {
 public:
     void init() override;
     void stop() override;

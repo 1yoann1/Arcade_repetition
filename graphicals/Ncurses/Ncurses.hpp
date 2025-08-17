@@ -9,6 +9,9 @@ public:
     void init() override;
     void stop() override;
     Input getInput() override;
+    void display(std::vector<std::string> &map) override;
+
+    void clear();
 private:
 };
 

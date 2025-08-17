@@ -1,6 +1,6 @@
 #include <../graphicals/Ncurses/Ncurses.hpp>
 
-void NibblerDisplay::init()
+void NcursesDisplay::init()
 {
     initscr();
     noecho();
@@ -10,12 +10,12 @@ void NibblerDisplay::init()
     start_color();
 }
 
-void NibblerDisplay::stop()
+void NcursesDisplay::stop()
 {
     endwin();
 }
 
-Input NibblerDisplay::getInput()
+Input NcursesDisplay::getInput()
 {
     int ch = getch();
     switch (ch) {
@@ -30,6 +30,20 @@ Input NibblerDisplay::getInput()
     }
 }
 
+void NcursesDisplay::display(std::vector<std::string> &map)
+{
+    clear();
+    for (size_t i = 0; i < map.size; i++) {
+        mwprint(i, 0, "%s", map[i].c_str());
+    }
+    refresh();
+}
+
+void clear()
+{
+    erase();
+}
+
 extern "C" IDisplayModule* create_display() {
-    return new NibblerDisplay();
+    return new NcursesDisplay();
 }

@@ -34,6 +34,32 @@ Input SfmlDisplay::getInput()
 
 void SfmlDisplay::display(std::vector<std::string> &map)
 {
+    for (size_t y = 0; y < map.size(); y++) {
+        for (size_t x = 0; x < map[y].size(); x++) {
+            char c = map[y][x];
+
+            switch(c) {
+                case '#' : sf::Color::White;
+                           break;
+                case 'O' : sf::Color::Green;
+                           break;
+                case 'C' : sf::Color::Red;
+                           break;
+                case '*' : sf::Color::Yellow;
+                           break;
+            }
+            sf::RectagleShape shape(sf::Vector2f(CELL_SIZE - 1.0f, CELL_SIZE - 1.0f));
+            shape.x = x * CELL_SIZE;
+            shape.y = y * CELL_SIZE;
+            shape.w = CELL_SIZE;
+            shape.h = CELL_SIZE;
+            
+            shape.setPosition(shape.x, shape.y, CELL_SIZE + 50);
+            shape.setFillColor(map[y][x]);
+            window->draw(shape);
+            window->display();
+        }
+    }
 }
 
 void SfmlDisplay::clear()

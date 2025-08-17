@@ -14,6 +14,7 @@ public:
     void clear();
 private:
     std::unique_ptr<sf::RenderWindow> window;
+    const float CELL_SIZE = 20.0f;
 };
 
 #endif

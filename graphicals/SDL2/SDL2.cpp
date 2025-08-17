@@ -31,6 +31,7 @@ Input Sdl2Display::getInput()
                 case SDLK_DOWN  : return Input::DOWN;
                 case SDLK_LEFT  : return Input::LEFT;
                 case SDLK_RIGHT : return Input::RIGHT;
+                case SDLK_QUIT  : return Input::QUIT;
                 case SDLK_r     : return Input::REFRESH;
             }
         }

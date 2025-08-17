@@ -19,11 +19,12 @@ Input NcursesDisplay::getInput()
 {
     int ch = getch();
     switch (ch) {
-        case KEY_UP:    return Input::UP;
-        case KEY_DOWN:  return Input::DOWN;
-        case KEY_LEFT:  return Input::LEFT;
-        case KEY_RIGHT: return Input::RIGHT;
-        case 'r':       return Input::REFRESH;
+        case KEY_UP    : return Input::UP;
+        case KEY_DOWN  : return Input::DOWN;
+        case KEY_LEFT  : return Input::LEFT;
+        case KEY_RIGHT : return Input::RIGHT;
+        case 'q'       : return Input::QUIT;
+        case 'r'       : return Input::REFRESH;
         break;
     default:
         break;

@@ -10,7 +10,8 @@ enum class Input {
     LEFT,
     RIGHT,
     REFRESH,
-    NONE
+    NONE,
+    QUIT
 };
 
 class IDisplayModule {

@@ -13,6 +13,7 @@ public:
 
     void clear();
 private:
+    std::unique_ptr<sf::RenderWindow> window;
 };
 
 #endif

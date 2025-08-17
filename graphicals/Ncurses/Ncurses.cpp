@@ -39,7 +39,7 @@ void NcursesDisplay::display(std::vector<std::string> &map)
     refresh();
 }
 
-void clear()
+void NcursesDisplay::clear()
 {
     erase();
 }

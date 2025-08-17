@@ -4,12 +4,18 @@
 #include "../include/IGraphic.hpp"
 #include <SDL2/SDL.h>
 
-class SDL2Display : public IDisplayModule {
+class Sdl2Display : public IDisplayModule {
 public:
     void init() override;
     void stop() override;
     Input getInput() override;
+    void display(std::vector<std::string> &map) override;
+
+    void clear();
 private:
+    SDL_Window* window = nullptr;
+    SDL_Renderer* render = nullptr;
+    const int CELL_SIZE = 20;
 };
 
 #endif

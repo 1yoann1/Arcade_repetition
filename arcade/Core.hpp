@@ -11,11 +11,14 @@ public:
 private:
     std::unique_ptr<IGame> gameModule;
     std::unique_ptr<IDisplayModule> displayModule;
-    std::unique_ptr<DLLoader<IGame>> gameloader;
-    std::unique_ptr<DLLoader<IDisplayModule>> displayModule;
+    std::unique_ptr<DLLoader<IGame>> gameLoader;
+    std::unique_ptr<DLLoader<IDisplayModule>> displayLoader;
 
     std::vector<std::string> gameLibs;
     std::vector<std::string> graphicLibs;
+    size_t currentGraphicLibIndex = 0;
+    size_t currentGameLibIndex = 0;
+    bool isRunning = true;
 };
 
 #endif

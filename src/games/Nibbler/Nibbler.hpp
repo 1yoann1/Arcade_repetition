@@ -23,7 +23,7 @@ public:
     //std::vector<std::string> handleInput(Input input);
     std::vector<std::string> refresh();
 
-    std::vector<std::string> getMap() const override {
+    const std::vector<std::string> getMap() const override {
          return mapData;
     }
     int getScore() const override {

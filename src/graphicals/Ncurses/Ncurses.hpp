@@ -11,7 +11,7 @@ public:
     Input getInput() override;
     void display(std::vector<std::string> &map) override;
 
-    void clear();
+    void clear() override;
 private:
 };
 

@@ -26,7 +26,7 @@ public:
     void handleInput(Input input);
     void refresh();
 
-    std::vector<std::string> getMap() const override { return mapData; }
+    const std::vector<std::string> getMap() const override { return mapData; }
     int getScore() const override { return scores; }
     bool isGameOver() const override { return gameOver; }
 private:

@@ -11,7 +11,7 @@ public:
     Input getInput() override;
     void display(std::vector<std::string> &map) override;
 
-    void clear();
+    void clear() override;
 private:
     std::unique_ptr<sf::RenderWindow> window;
     const float CELL_SIZE = 20.0f;

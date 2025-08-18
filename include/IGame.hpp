@@ -1,6 +1,7 @@
 #ifndef IGAME_HPP
 #define IGAME_HPP
 
+#include "../include/IGraphic.hpp"
 #include <iostream>
 #include <memory>
 #include <stdexcept>
@@ -18,6 +19,10 @@ public:
     virtual void score() = 0;
     virtual void stop() = 0;
     virtual void update(Input input) = 0;
+
+    virtual std::vector<std::string> getMap() const = 0;
+    virtual int getScore() const = 0;
+    virtual bool isGameOver() const = 0;
 };
 
 #endif //IGAME_HPP

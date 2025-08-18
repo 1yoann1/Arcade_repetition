@@ -42,7 +42,8 @@ void Nibbler::init()
 }
 
 void Nibbler::stop() 
-{   
+{
+    gameOver = true;
 }
 
 void Nibbler::score()
@@ -52,7 +53,7 @@ void Nibbler::score()
     }
 }
 
-std::vector<std::string> Nibbler::handleInput(Input input)
+void Nibbler::handleInput(Input input)
 {
     if (input == Input::UP && currentDirection != Input::DOWN)
         currentDirection = Input::UP;
@@ -63,12 +64,12 @@ std::vector<std::string> Nibbler::handleInput(Input input)
     else if (input == Input::LEFT && currentDirection != Input::RIGHT)
         currentDirection = Input::LEFT;
     else if (input == Input::REFRESH) {
-        return refresh();
+        refresh();
     }
-    return move(); 
+    //return move(); 
 }
 
-std::vector<std::string> Nibbler::move()
+void Nibbler::move()
 {
     Position currentHead = snake.front();
     int snakeHeadX = currentHead.x;
@@ -94,7 +95,7 @@ std::vector<std::string> Nibbler::move()
     }
     mapData[snakeHeadY][snakeHeadX] = s;
     checkCollision();   
-    return mapData;
+    //return mapData;
 }
 
 void Nibbler::checkCollision()

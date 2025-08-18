@@ -55,7 +55,7 @@ void Pacman::init()
     }
 }
 
-std::vector<std::string> Pacman::handleInput(Input input)
+void Pacman::handleInput(Input input)
 {
     if (input == Input::UP && currentDirection != Input::DOWN)
         currentDirection = Input::UP;
@@ -66,13 +66,14 @@ std::vector<std::string> Pacman::handleInput(Input input)
     else if (input == Input::LEFT && currentDirection != Input::RIGHT)
         currentDirection = Input::LEFT;
     else if (input == Input::REFRESH) {
-        return refresh();
+        refresh();
     }
-    return movePlayer(); 
+    //return movePlayer(); 
 }
 
 void Pacman::stop()
 {
+    gameOver = true;
 }
 
 void Pacman::score()
@@ -82,7 +83,7 @@ void Pacman::score()
     }
 }
 
-std::vector<std::string> Pacman::movePlayer()
+void Pacman::movePlayer()
 {
     Position currentHead = player.front();
     int playerHeadX = currentHead.x;
@@ -106,10 +107,10 @@ std::vector<std::string> Pacman::movePlayer()
     }
     mapData[playerHeadY][playerHeadX] = s;
     checkCollision();   
-    return mapData;
+    //return mapData;
 }
 
-std::vector<std::string> Pacman::enemyMove()
+void Pacman::enemyMove()
 {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -136,7 +137,7 @@ std::vector<std::string> Pacman::enemyMove()
         }
         mapData[enemies[i].y][enemies[i].x] = 'C';
     }
-    return mapData;
+    //return mapData;
 }
 
 void Pacman::checkCollision()
@@ -180,7 +181,7 @@ void Pacman::placeFood()
     mapData[food.foodY][food.foodX] = '*';
 }
 
-std::vector<std::string> Pacman::refresh()
+void Pacman::refresh()
 {
     scores = 0;
     player.clear();
@@ -207,16 +208,17 @@ std::vector<std::string> Pacman::refresh()
 
     currentDirection = Input::RIGHT;
 
-    return mapData;
+    //return mapData;
 }
 
 void Pacman::update(Input input)
 {
-    if (input == Input::NONE) {
+    if (input != Input::NONE) {
         handleInput(input);
     }
     movePlayer();
     enemyMove();
+    checkCollision();
 }
 
 extern "C" IGame* create_game()

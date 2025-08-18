@@ -1,14 +1,5 @@
 #include "../include/IGame.hpp"
 
-enum class Input {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
-    REFRESH,
-    NONE
-};
-
 struct foodPosition {
     int foodX, foodY;
 };
@@ -28,12 +19,16 @@ public:
     void stop() override;
     void update(Input input) override;
 
-    std::vector<std::string> movePlayer();
-    std::vector<std::string> enemyMove();
+    void movePlayer();
+    void enemyMove();
     void checkCollision();
     void placeFood();
-    std::vector<std::string> handleInput(Input input);
-    std::vector<std::string> refresh();
+    void handleInput(Input input);
+    void refresh();
+
+    std::vector<std::string> getMap() const override { return mapData; }
+    int getScore() const override { return scores; }
+    bool isGameOver() const override { return gameOver; }
 private:
     Input currentDirection;
     Input currentEDirection;
@@ -49,4 +44,5 @@ private:
     int HEIGHT, WIDTH;
     int scores;
     bool hasEaten = false;
+    bool gameOver = false;
 };

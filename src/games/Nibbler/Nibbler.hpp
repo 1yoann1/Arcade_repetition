@@ -29,7 +29,7 @@ public:
     int getScore() const override {
          return scores;
     }
-    //bool isGameOver() const override { return gameOver; }
+    bool isGameOver() const override { return gameOver; }
 
 private:
     Input currentDirection;

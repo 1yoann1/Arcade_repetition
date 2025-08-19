@@ -3,8 +3,13 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 enum class Input {
+    NEXT_LIB,
+    PREV_LIB,
+    NEXT_GAME,
+    PREV_GAME,
     UP,
     DOWN,
     LEFT,

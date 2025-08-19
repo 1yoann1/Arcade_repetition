@@ -20,7 +20,7 @@ public:
     virtual void stop() = 0;
     virtual void update(Input input) = 0;
 
-    virtual const std::vector<std::string> getMap() const = 0;
+    virtual std::vector<std::string> getMap() const = 0;
     virtual int getScore() const = 0;
     virtual bool isGameOver() const = 0;
 };

@@ -3,7 +3,8 @@ CXXFLAGS	=	-Wall -Wextra -std=c++17 -fPIC -fno-gnu-unique -I./include
 RM			=	rm -f
 
 NAME		=	arcade_exec
-SRC_CORE	=	Arcade/Core.cpp
+SRC_CORE	=	Arcade/Core.cpp \
+				main.cpp
 OBJ_CORE	=	$(SRC_CORE:.cpp=.o)
 LDFLAGS_CORE=	-ldl
 
@@ -24,6 +25,9 @@ all:	$(NAME) $(GAMES_SO) $(GRAPHICS_SO)
 
 $(NAME):	$(OBJ_CORE)
 	$(CXX) -o $(NAME) $(OBJ_CORE) $(LDFLAGS_CORE)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 core:	$(NAME)
 

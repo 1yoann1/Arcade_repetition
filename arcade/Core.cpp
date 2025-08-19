@@ -18,7 +18,11 @@ void Core::run()
 {
     gameModule->init();
     displayModule->init();
+
+    using namespace std::chrono;
+    const milliseconds frame_duration(16);
     while(isRunning) {
+        auto frame_start = steady_clock::now();
         Input input = displayModule->getInput();
         gameModule->update(input);
         displayModule->clear();
@@ -49,6 +53,12 @@ void Core::run()
                  continue;
             default                :
                  break;
+        }
+        auto frame_end = steady_clock::now();
+        auto duration = duration_cast<milliseconds>(frame_end - frame_start);
+        if (duration < frame_duration)
+        {
+            std::this_thread::sleep_for(frame_duration - duration);
         }
     }
     gameModule->stop();

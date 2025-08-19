@@ -221,7 +221,7 @@ void Pacman::update(Input input)
     checkCollision();
 }
 
-extern "C" IGame* create_game()
+extern "C" IGame* create_lib()
 {
     return new Pacman();
 }

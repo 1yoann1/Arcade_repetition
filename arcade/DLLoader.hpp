@@ -22,7 +22,7 @@ public:
 
     std::unique_ptr<T> getInstance() {
         using CreateFn = T*();
-        auto create = reinterpret_cast<CreateFn*>(dlsym(handle, "create_game"));
+        auto create = reinterpret_cast<CreateFn*>(dlsym(handle, "create_lib"));
         if (!create) throw std::runtime_error(dlerror());
         return std::unique_ptr<T>(create());
     }

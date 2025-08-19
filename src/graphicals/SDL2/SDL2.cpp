@@ -74,6 +74,6 @@ void Sdl2Display::clear()
     SDL_RenderClear(render);
 }
 
-extern "C" IDisplayModule* create_display() {
+extern "C" IDisplayModule* create_lib() {
     return new Sdl2Display();
 }

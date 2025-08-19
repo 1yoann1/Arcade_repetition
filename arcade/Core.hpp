@@ -4,6 +4,10 @@
 #include "../Arcade/DLLoader.hpp"
 #include "../include/IGame.hpp"
 #include "../include/IGraphic.hpp"
+#include <vector>
+#include <chrono>
+#include <thread>
+
 
 class Core {
 public:

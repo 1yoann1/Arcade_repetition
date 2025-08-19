@@ -64,6 +64,6 @@ void SfmlDisplay::clear()
     window->clear(sf::Color::Black);
 }
 
-extern "C" IDisplayModule* create_dipsplay() {
+extern "C" IDisplayModule* create_lib() {
     return new SfmlDisplay();
 }

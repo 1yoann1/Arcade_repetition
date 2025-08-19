@@ -169,7 +169,7 @@ void Nibbler::update(Input input)
     move();
 }
 
-extern "C" IGame* create_game()
+extern "C" IGame* create_lib()
 {
     return new Nibbler();
 }

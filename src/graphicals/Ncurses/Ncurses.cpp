@@ -43,6 +43,6 @@ void NcursesDisplay::clear()
     erase();
 }
 
-extern "C" IDisplayModule* create_display() {
+extern "C" IDisplayModule* create_lib() {
     return new NcursesDisplay();
 }

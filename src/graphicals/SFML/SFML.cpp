@@ -1,4 +1,4 @@
-#include "../graphicals/SFML.hpp"
+#include "../src/graphicals/SFML/SFML.hpp"
 
 void SfmlDisplay::init()
 {
@@ -15,24 +15,25 @@ void SfmlDisplay::stop()
 
 Input SfmlDisplay::getInput()
 {
-    sfEvent event;
+    sf::Event event;
     while (window->pollEvent(event)) {
         if (event.type == sf::Event::Closed) return Input::QUIT;
         if (event.type == sf::Event::KeyPressed) {
             switch(event.key.code) {
-                case sf::Keyboard::UP    : return Input::UP;
-                case sf::Keyboard::DOWN  : return Input::DOWN;
-                case sf::Keyboard::LEFT  : return Input::LEFT;
-                case sf::Keyboard::RIGHT : return Input::RIGHT;
+                case sf::Keyboard::Up    : return Input::UP;
+                case sf::Keyboard::Down  : return Input::DOWN;
+                case sf::Keyboard::Left  : return Input::LEFT;
+                case sf::Keyboard::Right : return Input::RIGHT;
                 case sf::Keyboard::Q     : return Input::QUIT;
                 case sf::Keyboard::R     : return Input::REFRESH;
                 default                  : break;
             }
         }
     }
+    return Input::NONE;
 }
 
-void SfmlDisplay::display(std::vector<std::string> &map)
+void SfmlDisplay::display(const std::vector<std::string> &map)
 {
     for (size_t y = 0; y < map.size(); y++) {
         for (size_t x = 0; x < map[y].size(); x++) {
@@ -50,7 +51,7 @@ void SfmlDisplay::display(std::vector<std::string> &map)
                            break;
             }
             sf::RectangleShape shape(sf::Vector2f(CELL_SIZE - 1.0f, CELL_SIZE - 1.0f));
-            shape.setPosition(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE + 50);
+            shape.setPosition(x * CELL_SIZE, y * CELL_SIZE);
             shape.setFillColor(color);
             window->draw(shape);
         }

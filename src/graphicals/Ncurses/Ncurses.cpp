@@ -1,4 +1,4 @@
-#include <../graphicals/Ncurses/Ncurses.hpp>
+#include <../src/graphicals/Ncurses/Ncurses.hpp>
 
 void NcursesDisplay::init()
 {
@@ -25,17 +25,15 @@ Input NcursesDisplay::getInput()
         case KEY_RIGHT : return Input::RIGHT;
         case 'q'       : return Input::QUIT;
         case 'r'       : return Input::REFRESH;
-        break;
-    default:
-        break;
+        default        : return Input::NONE;
     }
 }
 
-void NcursesDisplay::display(std::vector<std::string> &map)
+void NcursesDisplay::display(const std::vector<std::string> &map)
 {
     clear();
-    for (size_t i = 0; i < map.size; i++) {
-        mwprint(i, 0, "%s", map[i].c_str());
+    for (size_t i = 0; i < map.size(); i++) {
+        mvprintw(i, 0, "%s", map[i].c_str());
     }
     refresh();
 }

@@ -1,4 +1,4 @@
-#include "../graphicals/SDL2.hpp"
+#include "../src/graphicals/SDL2/SDL2.hpp"
 
 void Sdl2Display::init()
 {
@@ -10,7 +10,7 @@ void Sdl2Display::init()
 void Sdl2Display::stop()
 {
     if (render) {
-        SDL_DestroyRender(render);
+        SDL_DestroyRenderer(render);
         render = nullptr;
     }
     if (window) {
@@ -39,7 +39,7 @@ Input Sdl2Display::getInput()
     return Input::NONE;
 }
 
-void Sdl2Display::display(std::vector<std::string> &map)
+void Sdl2Display::display(const std::vector<std::string> &map)
 {
     for (size_t y = 0; y < map.size(); y++) {
         for (size_t x = 0; x < map[y].size(); x++) {
@@ -70,7 +70,7 @@ void Sdl2Display::display(std::vector<std::string> &map)
 
 void Sdl2Display::clear()
 {
-    SDL_setRenderDrawColor(render, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(render, 0, 0, 0, 255);
     SDL_RenderClear(render);
 }
 

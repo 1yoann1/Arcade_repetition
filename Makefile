@@ -4,14 +4,14 @@ RM			=	rm -f
 
 NAME		=	arcade_exec
 SRC_CORE	=	Arcade/Core.cpp \
-				main.cpp
+				Arcade/main.cpp
 OBJ_CORE	=	$(SRC_CORE:.cpp=.o)
 LDFLAGS_CORE=	-ldl
 
 LIB_DIR			=	./lib/
 
-GAMES_SO		=	$(LIB_DIR)arcade_snake.so \
-					$(LIB_DIR)arcade_nibbler.so
+GAMES_SO		=	$(LIB_DIR)arcade_nibbler.so \
+					$(LIB_DIR)arcade_pacman.so
 
 GRAPHICS_SO		=	$(LIB_DIR)arcade_ncurses.so \
 					$(LIB_DIR)arcade_sdl2.so \
@@ -38,19 +38,19 @@ graphicals:	$(GRAPHICS_SO)
 $(LIB_DIR):
 	mkdir -p $(LIB_DIR)
 
-$(LIB_DIR)arcade_nibbler.so: src/games/Nibbler.cpp | $(LIB_DIR)
+$(LIB_DIR)arcade_nibbler.so: src/games/Nibbler/Nibbler.cpp | $(LIB_DIR)
 	$(CXX) $(CXXFLAGS) -shared -o $@ $<
 
-$(LIB_DIR)arcade_pacman.so: src/games/Pacman.cpp | $(LIB_DIR)
+$(LIB_DIR)arcade_pacman.so: src/games/Pacman/Pacman.cpp | $(LIB_DIR)
 	$(CXX) $(CXXFLAGS) -shared -o $@ $<
 
-$(LIB_DIR)arcade_ncurses.so: graphicals/Ncurses/Ncurses.cpp | $(LIB_DIR)
+$(LIB_DIR)arcade_ncurses.so: src/graphicals/Ncurses/Ncurses.cpp | $(LIB_DIR)
 	$(CXX) $(CXXFLAGS) -shared -o $@ $< $(NCURSES_LDFLAGS)
 
-$(LIB_DIR)arcade_sdl2.so: graphicals/SDL2/SDL2.cpp | $(LIB_DIR)
+$(LIB_DIR)arcade_sdl2.so: src/graphicals/SDL2/SDL2.cpp | $(LIB_DIR)
 	$(CXX) $(CXXFLAGS) -shared -o $@ $< $(SDL2_LDFLAGS)
 
-$(LIB_DIR)arcade_sfml.so: graphicals/SFML/SFML.cpp | $(LIB_DIR)
+$(LIB_DIR)arcade_sfml.so: src/graphicals/SFML/SFML.cpp | $(LIB_DIR)
 	$(CXX) $(CXXFLAGS) -shared -o $@ $< $(SFML_LDFLAGS)
 
 clean:

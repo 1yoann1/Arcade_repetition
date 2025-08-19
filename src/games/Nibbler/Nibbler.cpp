@@ -115,7 +115,7 @@ void Nibbler::checkCollision()
         }
     }
 
-    int i = 0;
+//    int i = 0;
     if (snakeHeadX == food.foodX && snakeHeadY == food.foodY) {
         hasEaten = true;
         mapData[food.foodY][food.foodX] = ' ';

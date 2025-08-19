@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <memory>
 
 enum class Input {
     NEXT_LIB,

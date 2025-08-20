@@ -84,6 +84,20 @@ void Nibbler::move()
         snakeHeadX++;
     else if (currentDirection == Input::LEFT)
         snakeHeadX--;
+    
+    if (snakeHeadX < 0 || snakeHeadX >= WIDTH || snakeHeadY < 0 || snakeHeadY >= HEIGHT)
+        return;
+    if (mapData[snakeHeadY][snakeHeadX] == '#') {
+        stop();
+        return;
+    }
+
+    for (auto seg : snake) {
+        if (seg.x == snakeHeadX && seg.y == snakeHeadY) {
+            stop();
+            return;
+        }
+    }
 
     snake.push_front({snakeHeadX, snakeHeadY});
     if (!hasEaten) {
@@ -167,6 +181,13 @@ void Nibbler::update(Input input)
         handleInput(input);
     }
     move();
+    static auto lastMove = std::chrono::steady_clock::now();
+    auto now = std::chrono::steady_clock::now();
+
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(now - lastMove).count() < 200) {
+        return;
+    }
+    lastMove = now;
 }
 
 extern "C" IGame* create_lib()

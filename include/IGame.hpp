@@ -11,6 +11,7 @@
 #include <vector>
 #include <deque>
 #include <random>
+#include <chrono>
 
 class IGame {
 public:

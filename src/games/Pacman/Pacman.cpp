@@ -35,7 +35,7 @@ void Pacman::init()
     //enemyPlayer.push_front({enemyXstart, enemyYstart});
     //enemyPlayer1.push_front({enemyXstart1, enemyYstart1});
     enemies.push_front({enemyXstart, enemyYstart});
-    enemies.push_front({enemyYstart1, enemyYstart1});
+    enemies.push_front({enemyXstart1, enemyYstart1});
     for (auto &e : enemies) {
         mapData[e.y][e.x] = 'C';
     }
@@ -98,7 +98,13 @@ void Pacman::movePlayer()
         playerHeadX++;
     else if (currentDirection == Input::LEFT)
         playerHeadX--;
+    
+    if (playerHeadX < 0 || playerHeadX >= WIDTH || playerHeadY < 0 || playerHeadY >= HEIGHT)
+        return;
+    if (mapData[playerHeadY][playerHeadX] == '#')
+        return;
 
+    mapData[currentHead.y][currentHead.x] = ' ';
     player.push_front({playerHeadX, playerHeadY});
     if (!hasEaten) {
         score();
@@ -219,6 +225,13 @@ void Pacman::update(Input input)
     movePlayer();
     enemyMove();
     checkCollision();
+    static auto lastMove = std::chrono::steady_clock::now();
+    auto now = std::chrono::steady_clock::now();
+
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(now - lastMove).count() < 200) {
+        return;
+    }
+    lastMove = now;
 }
 
 extern "C" IGame* create_lib()

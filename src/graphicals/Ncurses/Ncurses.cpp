@@ -25,6 +25,10 @@ Input NcursesDisplay::getInput()
         case KEY_RIGHT : return Input::RIGHT;
         case 'q'       : return Input::QUIT;
         case 'r'       : return Input::REFRESH;
+        case 'n'       : return Input::NEXT_LIB;
+        case 'p'       : return Input::PREV_LIB;
+        case 'g'       : return Input::NEXT_GAME;
+        case 'b'       : return Input::PREV_GAME;
         default        : return Input::NONE;
     }
 }

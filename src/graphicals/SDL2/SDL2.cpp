@@ -33,6 +33,11 @@ Input Sdl2Display::getInput()
                 case SDLK_RIGHT : return Input::RIGHT;
                 case SDLK_q     : return Input::QUIT;
                 case SDLK_r     : return Input::REFRESH;
+                case SDLK_n     : return Input::NEXT_LIB;
+                case SDLK_p     : return Input::PREV_LIB;
+                case SDLK_g     : return Input::NEXT_GAME;
+                case SDLK_b     : return Input::PREV_GAME;
+                default         : break;
             }
         }
     }

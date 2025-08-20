@@ -26,6 +26,10 @@ Input SfmlDisplay::getInput()
                 case sf::Keyboard::Right : return Input::RIGHT;
                 case sf::Keyboard::Q     : return Input::QUIT;
                 case sf::Keyboard::R     : return Input::REFRESH;
+                case sf::Keyboard::N     : return Input::NEXT_LIB;
+                case sf::Keyboard::P     : return Input::PREV_LIB;
+                case sf::Keyboard::G     : return Input::NEXT_GAME;
+                case sf::Keyboard::B     : return Input::PREV_GAME;
                 default                  : break;
             }
         }
